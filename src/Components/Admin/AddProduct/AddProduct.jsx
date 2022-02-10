@@ -30,7 +30,7 @@ export default function AddPorduct() {
     const handleSave = () => {
         if(!values.image)values.image= 'https://avatars.mds.yandex.net/i?id=f477492843d66fd180e9b70835611309-5699340-images-thumbs&n=13'
         addPorduct({...values, price: +values.price})
-        navigate='/'
+        navigate('/')
     }
   return (
     <Box 
