@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddPorduct from './Components/Admin/AddProduct/AddProduct';
-import Home from './Components/Home'
+import Home from './Components/Home/Sidebar/Home';
 import ProductContextProvider from './Contexts/ProductContext';
+
 
 const MyRoutes = () => {
     return (
