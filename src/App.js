@@ -1,13 +1,13 @@
-
-import './App.css';
+// import './App.css';
 import MyRoutes from './MyRoutes';
 
 function App() {
   return (
     <div>
-      <MyRoutes/>
+     <MyRoutes/>
     </div>
   );
 }
 
 export default App;
+
