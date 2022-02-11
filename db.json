@@ -1,5 +1,12 @@
 {
-  "products":[
-
+  "products": [
+    {
+      "title": "BMW",
+      "image": "https://avatars.mds.yandex.net/i?id=d6c13c958f1afd9712de38dce5458006-4518735-images-thumbs&n=13",
+      "price": 2500,
+      "type": "sedan",
+      "description": "bmw e34 m 5 from 1994",
+      "id": 1
+    }
   ]
 }
