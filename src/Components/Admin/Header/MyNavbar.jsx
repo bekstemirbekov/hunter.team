@@ -189,7 +189,7 @@ export default function MyNavbar() {
 
   return (
     <Box fullWidth sx={{ flexGrow: 1 }}>
-      <AppBar position="static" fullWidth style={{ background: 'transparent', boxShadow: 'none', backgroundAttachment: 'fixed', backgroundImage: 'url(http://autodealer39.ru/wp-content/uploads/2021/04/P90413073_highRes_the-first-ever-bmw-i-1024x683.jpg)'}}>
+      <AppBar position="static" fullWidth style={{ background: 'transparent', boxShadow: 'none', backgroundAttachment: 'fixed', backgroundImage: 'url(https://avatars.mds.yandex.net/i?id=e2f64fc6d98708613a152f1403a6ec8a-4756892-images-thumbs&n=13)', height:'25rem'}}>
         <Toolbar>
           <IconButton
             size="large"

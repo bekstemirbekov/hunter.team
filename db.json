@@ -7,6 +7,14 @@
       "type": "sedan",
       "description": "bmw e34 m 5 from 1994",
       "id": 1
+    },
+    {
+      "title": "toyota",
+      "image": "https://avatars.mds.yandex.net/i?id=b87be8899c101f8382a097ffb9c92bbf-5878501-images-thumbs&n=13",
+      "price": 30000,
+      "type": "Кроссовер",
+      "description": "towesfv",
+      "id": 2
     }
   ]
 }

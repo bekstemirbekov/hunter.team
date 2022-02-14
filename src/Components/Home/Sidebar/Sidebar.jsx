@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { styled} from '@mui/material/styles'
 import { useNavigate } from 'react-router';
 import { productContext } from '../../../Contexts/ProductsContext';
-import { Box, Button, FormControl, FormLabel, Grid, Paper, RadioGroup, Slider, Radio, FormControlLabel } from '@mui/material';
+import { Box, FormControl, FormLabel, Grid, Paper, RadioGroup, Slider, Radio, FormControlLabel } from '@mui/material';
+import { Button} from 'react-bootstrap'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -96,18 +97,20 @@ const Sidebar = () => {
                                 step={5000}
                             />
                         </Grid>
-                        <Button 
+                        <Button
                         onClick={resetFilter}
-                        variant='contained'
-                        color='info'
+                        variant='outline-dark'
+                        // color='secondary'
                         >
                             Сбросить
                         </Button>
                     </Paper>
                 </Grid>
-
+        
             </Grid>
+         
         </Box>
+         
     );
 };
 
