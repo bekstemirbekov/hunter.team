@@ -11,6 +11,7 @@ import Register from './Components/Auth/Register/Register';
 import Login from './Components/Auth/Login/Login'
 import AddProduct from './Components/Admin/AddProduct/AddProduct';
 import Cart from './Components/Admin/Cart/Cart';
+import Pay from './Components/Pay/Pay';
 
 const MyRoutes = () => {
     return (
@@ -25,6 +26,7 @@ const MyRoutes = () => {
                 <Route path='/detail/:id' element={<ProductDetail/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
+                {/* <Route path='/' element={<Pay/>}/> */}
             </Routes>
         </BrowserRouter>
         </ProductsContextProvider>
