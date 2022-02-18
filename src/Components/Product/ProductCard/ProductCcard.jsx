@@ -7,66 +7,96 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { productContext } from '../../../Contexts/ProductsContext';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton } from '@mui/material';
+import { IconButton, Paper } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from '@mui/icons-material';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function ProductCard({item}) {
-    const {deleteProduct, addToCart, chekProductInCart} = React.useContext(productContext)
+    const {deleteProduct, addToCart, chekProductInCart, useAuth} = React.useContext(productContext)
+      const currentUser = useAuth()
 // element for delete
     let icons = (
         <CardActions disableSpacing>
-            <Link to={`edit/${item.id}`}>
-                <IconButton>
-                    <EditIcon/>
-                </IconButton>
-            </Link>
+            
+              {currentUser?.email === 'admin@gmail.com' ? (
+                   <Link to={`edit/${item.id}`}>
+                   <IconButton>
+                       <EditIcon/>
+                   </IconButton>
+               </Link>
+              ): null
 
-            <IconButton onClick={() => deleteProduct(item.id)}>
+              }
+           
+            {currentUser?.email === 'admin@gmail.com' ? (
+              <IconButton onClick={() => deleteProduct(item.id)}>
                 <DeleteIcon/>
-            </IconButton>
-
-            <IconButton onClick={() => {
+              </IconButton>
+              ): null
+              
+            }
+            
+               <IconButton onClick={() => {
                 addToCart(item) 
                 }        
             }
-            color = {chekProductInCart(item.id) ? 'secondary': 'warning'}
+            color = {chekProductInCart(item.id) ? 'secondary': 'inherit'}
              >
-                    <ShoppingCart />
+                       <ShoppingCart />
             </IconButton>
+           
+            <Link to={`/detail/${item.id}`} >
+            <IconButton>
+             <MoreHorizIcon/>
+           </IconButton>
+            </Link>
+           
+           
+            
         </CardActions>
     )
 
   return (
-    <Card sx={{ maxWidth: 420 }}>
-      <Link to={`/detail/${item.id}`} style={{textDecoration: 'none', color: 'black'}}>
+    
+
+        <Card sx={{  width: '100%' }} >
       <CardMedia
         component="img"
+        width='100%'
         height="300"
         image={item.image}
         alt={item.title}
       />
+  
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" >
           {item.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {item.description}
-        </Typography>
       </CardContent>
-      </Link>
+     
     
 
       <CardContent>
-          <Typography>
-              ${item.price}
+          <Typography variant='body1'>
+              Cтоимость:{item.price}
           </Typography>
-          <Typography>
-              Type of car: {item.type}
+          <Typography variant='body2'>
+              Класс: {item.model}
           </Typography>
+          <Typography variant='body2'>
+              Тип: {item.type}
+          </Typography>
+     
       </CardContent>
+    
         {icons}
-    </Card>
+        </Card>
+
+ 
+     
+      
+   
   );
 }

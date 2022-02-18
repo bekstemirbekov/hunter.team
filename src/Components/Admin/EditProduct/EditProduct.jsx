@@ -56,7 +56,7 @@ export default function EditProduct() {
     >
       
       <Paper elevation={3} >
-          <h1>Change vehicle data</h1>
+          <h1>Изменить данные авто:</h1>
             <div style={{display: 'flex', justifyContent: 'space-around', color: 'black'}}>
                 <div>
                     <img width='300' src={values.image} alt={values.title} />
@@ -106,12 +106,11 @@ export default function EditProduct() {
                             label='Description'/>
                     </form>
                     <Link to='/'>
-                        <Button 
+                        <Button
+                        style={{backgroundColor: 'black', color: 'white'}} 
                         onClick={handleSave}
-                        variant='contained'
-                        color='warning'
                         >
-                            Save updated data
+                            Сохранить изменения
                         </Button>
                     </Link>
                 </div>

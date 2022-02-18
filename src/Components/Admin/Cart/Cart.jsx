@@ -8,8 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { productContext } from '../../../Contexts/ProductsContext';
-import { Button, Typography } from '@mui/material';
+import { Button, CardActions, IconButton, Typography } from '@mui/material';
 import { calcTotalPrice } from '../../../Helpers/CalcPrice';
+import { Link } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,21 +36,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function Cart() {
-    const {cart, getCart, changeProductCount} = React.useContext(productContext)
+export default function Cart({item}) {
+    const {cart, getCart, changeProductCount, deleteProductInCart} = React.useContext(productContext)
     React.useEffect(() => {
       getCart()
     }, [])
+
+
+ 
+    
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Image</StyledTableCell>
-            <StyledTableCell align="right">Title</StyledTableCell>
-            <StyledTableCell align="right">Price(g)</StyledTableCell>
-            <StyledTableCell align="right">Count(g)</StyledTableCell>
-            <StyledTableCell align="right">SubPric(g)</StyledTableCell>
+            <StyledTableCell>Фото</StyledTableCell>
+            <StyledTableCell align="right">Авто(g)</StyledTableCell>
+            <StyledTableCell align="right">Стоимость(g)</StyledTableCell>
+            <StyledTableCell align="right">Количество(g)</StyledTableCell>
+            <StyledTableCell align="right">Итоговая стоимость(g)</StyledTableCell>
+            <StyledTableCell align="right">Очистить(g)</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,7 +64,7 @@ export default function Cart() {
                 {cart.products.map((elem) => (
                     <StyledTableRow key={elem.item.id}>
                         <StyledTableCell component='th' scope='row'>
-                            <img width='60' src={elem.item.image}/>
+                            <img width='150' src={elem.item.image}/>
                         </StyledTableCell>
                         <StyledTableCell  align='right'>
                             {elem.item.title}
@@ -73,8 +81,12 @@ export default function Cart() {
                             />
                         </StyledTableCell>
                         <StyledTableCell  align='right'>
-                            {elem.item.subPrice}
+                            {elem.subPrice}
                         </StyledTableCell>
+                        <StyledTableCell align='center' onClick={() => deleteProductInCart(elem.item.id)}>
+                          <DeleteIcon/>
+                        </StyledTableCell>
+                        {/* {icons} */}
                     </StyledTableRow>
                 ))}
               </>
@@ -83,7 +95,7 @@ export default function Cart() {
               <TableCell rowSpan={3}/>
               <TableCell colSpan={2}>
                     <Typography variant='h4'>
-                        Total:
+                        Итоговая стоимость:
                     </Typography>                        
               </TableCell>
               {
@@ -94,24 +106,25 @@ export default function Cart() {
                   ) : (null)
               }
           </TableRow>
+          
+
           <TableRow>
-              <TableCell colSpan={3} align='right'>
-                  <Button variant='contained' color='success'>Buy</Button>
+            <Link to='/pay' style={{textDecoration: 'none'}}>
+            <TableCell colSpan={3} align='right'>
+                  <Button variant='contained' style={{backgroundColor: 'black', color: 'white'}}>Купить</Button>
               </TableCell>
+            </Link>
+            <Link to='/' style={{textDecoration: 'none'}}> 
+                <TableCell colSpan={3} align='right'>
+                  <Button variant='outlined' style={{backgroundColor: 'black', color: 'white'}}>Главная</Button>
+                </TableCell>
+            </Link>
+
+              
           </TableRow> 
         </TableBody>
       </Table>
+      
     </TableContainer>
   );
 }
-{/* {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))} */}

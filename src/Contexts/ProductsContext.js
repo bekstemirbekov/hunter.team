@@ -167,14 +167,31 @@ const ProductsContextProvider = ({children}) => {
             let cart = JSON.parse(localStorage.getItem('cart'));
             cart.products = cart.products.map(elem => {
                 if(elem.item.id === id){
-                    elem.count = count
+                    elem.count = count >= 0 ? count : 0
                     elem.subPrice = calcSubPrice(elem)
                 }
+                // if(elem.item.id !== id){
+                //     return elem
+                // }
                 return elem
             })
             cart.totalPrice = calcTotalPrice(cart.products)
             localStorage.setItem('cart', JSON.stringify(cart))
             getCart()
+        }
+
+        // ! DELETEPRODUCTINCART
+        const deleteProductInCart = (id) => {
+            let toDelete = JSON.parse(localStorage.getItem('cart'));
+            toDelete.products =toDelete.products.filter(
+                (elem) => elem.item.id !== id
+            );
+            localStorage.setItem('cart', JSON.stringify(toDelete))
+            getCart()
+            dispatch({
+                type: "CHANGE_CART_COUNT",
+                payload: toDelete.products.length
+            })
         }
     // ! CHECK PRODUCT IN CART
 
@@ -244,6 +261,7 @@ const ProductsContextProvider = ({children}) => {
             signIn,
             logout,
             useAuth,
+            deleteProductInCart,
             edit: state.edit,
             products: state.products,
             cartLength: state.cartLength,

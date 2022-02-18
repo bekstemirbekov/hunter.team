@@ -11,13 +11,20 @@ import Register from './Components/Auth/Register/Register';
 import Login from './Components/Auth/Login/Login'
 import AddProduct from './Components/Admin/AddProduct/AddProduct';
 import Cart from './Components/Admin/Cart/Cart';
-import Pay from './Components/Pay/Pay';
+import Payment from './Components/Payment/Payment';
+import Footer from './Components/Footer';
+import MainPage from './Components/MainPage/MainPage';
+
+
+
+
 
 const MyRoutes = () => {
     return (
         <ProductsContextProvider>
              <BrowserRouter>
              <MyNavbar/>
+             
             <Routes>
                 <Route path='/add' element={<AddProduct/>}/>
                 <Route path='/' element={<Home/>}/>
@@ -26,8 +33,15 @@ const MyRoutes = () => {
                 <Route path='/detail/:id' element={<ProductDetail/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<Login/>}/>
-                {/* <Route path='/' element={<Pay/>}/> */}
+                <Route path='/pay' element={<Payment/>}/>
+                <Route path='/main' element={<MainPage/>}/>
+                
+
+
+
+
             </Routes>
+            <Footer/>
         </BrowserRouter>
         </ProductsContextProvider>
        

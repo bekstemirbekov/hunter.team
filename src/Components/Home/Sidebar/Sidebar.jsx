@@ -3,7 +3,7 @@ import { styled} from '@mui/material/styles'
 import { useNavigate } from 'react-router';
 import { productContext } from '../../../Contexts/ProductsContext';
 import { Box, FormControl, FormLabel, Grid, Paper, RadioGroup, Slider, Radio, FormControlLabel } from '@mui/material';
-import { Button} from 'react-bootstrap'
+import { Button, InputGroup} from 'react-bootstrap'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -47,15 +47,13 @@ const Sidebar = () => {
 
     return (
         <Box 
-        sx={{flexGrow: 1}}
-        style={{marginLeft: '20px'}}
-        >
-            <Grid container spacing={2}>
-                <Grid item md={3}>
-                    <Paper elevation={2}>
-                        <FormControl component='fieldset'>
-                            <FormLabel component='legend'>Тип:</FormLabel>
+        sx={{flexGrow: 1}}>
+            <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center', paddingTop: '10px'}}>
+                <Grid >
+                    <Paper elevation={9}>
+                        <FormControl component='fieldset' >
                             <RadioGroup 
+                            style={{justifyContent:'center', flexDirection: '-moz-initial'}}
                             aria-label='gender'
                             name='gender1'
                             value={type}
@@ -63,48 +61,59 @@ const Sidebar = () => {
                             >
                                 <FormControlLabel
                                     value='Купе'
-                                    control={<Radio/>}
+                                    control={<Radio 
+                                    style={{color: 'black'}}/>}
                                     label='Купе'
                                 />
                                 <FormControlLabel
                                    value='Седан'
-                                   control={<Radio/>}
+                                   control={<Radio 
+                                   style={{color: 'black'}}/>}
                                    label='Седан'
                                 />
                                 <FormControlLabel
                                    value='Универсал'
-                                   control={<Radio/>}
+                                   control={<Radio 
+                                   style={{color: 'black'}}/>}
                                    label='Универсал'
                                 />
                                 <FormControlLabel
                                    value='Хэтчбек'
-                                   control={<Radio/>}
+                                   control={<Radio 
+                                   style={{color: 'black'}}/>}
                                    label='Хэтчбек'
                                 />
                                 <FormControlLabel
                                    value='Кроссовер'
-                                   control={<Radio/>}
+                                   control={<Radio 
+                                   style={{color: 'black'}}/>}
                                    label='Кроссовер'
                                 />
                             </RadioGroup>
+                            <input type="number"
+                            style={{ width: '18rem', margin: '10px',justifyContent: 'center', display: 'flex' }}
+                             onChange={(e) => filterProducts('price_lte', e.target.value)}
+                             valueLabelDisplay='auto'
+                             min={0}
+                             max={120000}
+                             step={10000} /> 
+                             <Button
+                        style={{width: '80%', display: 'flex', justifyContent: 'center', margin: 'auto', marginLeft: '35px', marginBottom: '10px' }}
+                       onClick={resetFilter}
+                       variant='dark'
+                       >
+                           Сбросить
+                       </Button>
+                       
                         </FormControl>
 
+
                         <Grid>
-                            <Slider
-                                onChange={(e) => filterProducts('price_lte', e.target.value)}
-                                valueLabelDisplay='auto'
-                                max={120000}
-                                step={5000}
-                            />
+                         
                         </Grid>
-                        <Button
-                        onClick={resetFilter}
-                        variant='outline-dark'
-                        // color='secondary'
-                        >
-                            Сбросить
-                        </Button>
+                       
                     </Paper>
+                    
                 </Grid>
         
             </Grid>
