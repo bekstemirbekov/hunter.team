@@ -137,12 +137,20 @@ export default function MyNavbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to='/login'>
-      <MenuItem style={{backgroundColor: 'green', color: 'white'}} onClick={handleMenuClose}>Войти</MenuItem>
+      
+          <Link style={{textDecoration: 'none'}} to={!currentUser ?'/login' : '#'}>
+          <MenuItem disabled={currentUser ? true : false} onClick={handleMenuClose}>Войти</MenuItem>
+          </Link>
+      
+     
+      <Link style={{textDecoration: 'none'}} to={!currentUser ?'/register' : '#'}>
+      <MenuItem disabled={currentUser ? true : false} onClick={handleMenuClose}>Зарегистрироваться</MenuItem>
       </Link>
-      <Link to='/register'>
-      <MenuItem style={{backgroundColor: 'green', color: 'white'}} onClick={handleMenuClose}>Зарегистрироваться</MenuItem>
-      </Link>
+      {
+            currentUser ? (
+              <Button variant='success' disabled={!currentUser} onClick={handleLogout} >Выйти</Button>
+            ) : null
+          }
     </Menu>
   );
 
@@ -164,7 +172,7 @@ export default function MyNavbar() {
       onClose={handleMobileMenuClose}
     >
 
-        <Link to='/cart' style={{color: 'white'}}>
+        <Link to='/cart' style={{color: 'red'}}>
             <IconButton color='inherit'>
                 <Badge badgeContent={cartLength} color="secondary">
                     <ShoppingCartIcon/>
@@ -188,26 +196,26 @@ export default function MyNavbar() {
    
 
   return (
-    <Box fullWidth sx={{ flexGrow: 1 }}>
-      <AppBar position="static" fullWidth style={{ background: 'transparent', boxShadow: 'none', backgroundAttachment: 'fixed', backgroundImage: 'url(https://avatars.mds.yandex.net/i?id=e2f64fc6d98708613a152f1403a6ec8a-4756892-images-thumbs&n=13)', height:'25rem'}}>
+    <Box fullWidth sx={{ flexGrow: 1 }} >
+      <AppBar position="static"  style={{ background: 'transparent', boxShadow: 'none', backgroundAttachment: 'scroll', backgroundColor: 'black', backgroundSize: 'cover'}}
+      >
+        
+        
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon /> 
+          <IconButton>
+            <img src="https://www.carlogos.org/car-logos/bmw-logo-1997-1200x1200.png" width='40px' />
           </IconButton>
+          <Link to='/main' style={{textDecoration: 'none', color: 'white'}}>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Evening store
+            BMW.KG
           </Typography>
+          </Link>
+         
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -219,21 +227,15 @@ export default function MyNavbar() {
               onChange={handleValue}
             />
           </Search>
-          <Link to='/add'>
-              <Button style={{backgroundColor: 'alpha', color: 'white'}}>Добавить</Button>
-            </Link>
+         
           <Box sx={{ flexGrow: 1 }} />
-          {currentUser?.email === 'admin1@gmail.com' ? (
-            <Link to='/add'>
+          {currentUser?.email === 'admin@gmail.com' ? (
+            <Link to='/add' style={{textDecoration: 'none'}}>
               <Button style={{backgroundColor: 'alpha', color: 'white'}}>Добавить</Button>
             </Link>
           ): null}
           {currentUser?.email}
-          {
-            currentUser ? (
-              <Button variant='success' disabled={!currentUser} onClick={handleLogout} >Выйти</Button>
-            ) : null
-          }
+         
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           <Link to='/cart' style={{color: 'white'}}>
               <IconButton>
@@ -269,9 +271,12 @@ export default function MyNavbar() {
             </IconButton>
           </Box>
         </Toolbar>
+     
+       
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </Box>
+   
   );
 }

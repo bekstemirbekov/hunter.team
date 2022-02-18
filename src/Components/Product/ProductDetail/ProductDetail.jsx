@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@mui/material';
+import { Card, Paper, Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { productContext } from '../../../Contexts/ProductsContext';
@@ -11,36 +11,33 @@ const ProductDetail = () => {
         getDetail(id)
     }, [id])
     return (
-        <Paper elevation={3} variant='outlined'>
-            <Typography variant='h5' style={{textAlign: 'center'}}>
-                About this car:
-            </Typography>
-            {
-                detail ? (
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: "column",
-                        alignItems: 'center'
-                    }}>
-                        <div>
-                            <img width='450' src={detail.image} />
-                        </div>
-                        <div style={{
-                            width: '450px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            justifyContent: 'center'
-                        }}>
-                            <Typography variant='h3'>{detail.title}</Typography>
-                            <Typography variant='subtitle1'>{detail.type}</Typography>
-                            <Typography variant='body1'>{detail.description}</Typography>
-                            <Typography variant='h4'>{detail.price}</Typography>
-                        </div>
+        <Paper elevation={3} variant='outlined' sx={{display: 'flex', justifyContent: 'space-around', margin: 'auto', width: '800px'}}>
+         
+        
+
+        {
+            detail ? (
+                <div>
+                    <div>
+                        <img  width='450px'  src={detail.image} />
                     </div>
-                ) : (<h1>Loading...</h1>)
-            }
+                    <div >
+                        <Typography variant='h5'>Mодель:{detail.title}</Typography>
+                        <Typography variant='h4'>Цена:{detail.price}</Typography>
+                        <Typography variant='h6'>Класс:{detail.model}</Typography>
+                        <Typography variant='subtitle1'>Тип кузова:{detail.type}</Typography>
+                        <Typography variant='body1'>{detail.description}</Typography>
+                        
+                    </div>
+                </div>
+            ) : (<h1>Loading...</h1>)
+        }
         </Paper>
+
+            
+
+
+
     );
 };
 
